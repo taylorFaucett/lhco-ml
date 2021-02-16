@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100pt" height="100pt" viewBox="0 0 100 100" version="1.1">
+<g id="surface68357">
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 80.3125 50 L 19.6875 85 "/>
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 80.3125 50 C 68.855469 23.179688 48.644531 11.511719 19.6875 15 "/>
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 80.3125 50 C 51.355469 53.488281 31.144531 41.820312 19.6875 15 "/>
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 80.3125 50 L 19.6875 15 "/>
+<path style="fill-rule:nonzero;fill:rgb(89.019608%,10.196078%,10.980392%);fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 87.8125 50 C 87.8125 54.140625 84.453125 57.5 80.3125 57.5 C 76.167969 57.5 72.8125 54.140625 72.8125 50 C 72.8125 45.859375 76.167969 42.5 80.3125 42.5 C 84.453125 42.5 87.8125 45.859375 87.8125 50 "/>
+<path style="fill-rule:nonzero;fill:rgb(89.019608%,10.196078%,10.980392%);fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 27.1875 85 C 27.1875 89.140625 23.832031 92.5 19.6875 92.5 C 15.546875 92.5 12.1875 89.140625 12.1875 85 C 12.1875 80.859375 15.546875 77.5 19.6875 77.5 C 23.832031 77.5 27.1875 80.859375 27.1875 85 "/>
+<path style="fill-rule:nonzero;fill:rgb(89.019608%,10.196078%,10.980392%);fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(20%,20%,20%);stroke-opacity:1;stroke-miterlimit:10;" d="M 27.1875 15 C 27.1875 19.140625 23.832031 22.5 19.6875 22.5 C 15.546875 22.5 12.1875 19.140625 12.1875 15 C 12.1875 10.859375 15.546875 7.5 19.6875 7.5 C 23.832031 7.5 27.1875 10.859375 27.1875 15 "/>
+</g>
+</svg>
