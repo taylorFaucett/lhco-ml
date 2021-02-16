@@ -10,7 +10,7 @@ def pad_array(X, dim=4):
     for ix, x in enumerate(X):
         replacement = np.pad(x, [(0,largest-len(x)), (0,0)], mode="constant")
         output[ix] = replacement
-    return output
+    return np.array(output)
 
 def pad_pairs(X1, X2, dim=4):
     largest = max(X1.shape[1], X2.shape[1])
