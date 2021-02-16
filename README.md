@@ -10,6 +10,8 @@ Data should be, initially, in the form of a NxMx4 or NxMx3 array, where
 This information can be generated from raw data through an interface like [pyjet](https://github.com/scikit-hep/pyjet). A sample of the data format is also downloadable through [energyflow](https://energyflow.network/) with the function `qg_jets.load()` or by running [`data_processing/download_samples.py`](data_processing/download_samples.py)
 
 ```python
+from energyflow.datasets import qg_jets
+
 # N = Number of events
 X, y = qg_jets.load(N=10000)
 ```
