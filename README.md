@@ -16,7 +16,7 @@ from energyflow.datasets import qg_jets
 X, y = qg_jets.load(N=10000)
 ```
 
-Because events won't always have an identical number of constituents, this dataset (and any used here) will need to pad shorter arrays (the M-axis from the NxMx3 or NxMx4 arrays) with zeros. A function called `pad_array` is given in [`data_processing/tools.py`](data_processing/tools.py) which will convert a list of Mx3 or Mx4 arrays into a an NxMx3 or NxMx4 array with zero padding. From this point, I will just refer to the NxMx4 and NxMx3 as "FlowNetwork" data.
+Because events won't always have an identical number of constituents, this dataset (and any used here) will need to pad shorter arrays (the M-axis from the NxMx3 or NxMx4 arrays) with zeros. A function called `pad_array` is given in [`data_processing/tools.py`](data_processing/tools.py) which will convert a list of Mx3 or Mx4 arrays into a an NxMx3 or NxMx4 array with zero padding. From this point, I will just refer to the NxMx4 and NxMx3 arrays (i.e. the data format the rest of the code uses) as "FlowNetwork" formatted data.
 
 ## Data Processing
 FlowNetwork data will work, as is, with any PFN or EFN. In order to generate Jet Substructure observables, Jet Images and Energy Flow Polynomials, code is given in ```data_processing``` directory. A code runner file ```data_processing/process_pipeline.py``` is also given which will run all the data processing code in order.
