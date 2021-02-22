@@ -5,6 +5,7 @@ import pathlib
 import h5py
 import glob
 from tqdm import tqdm
+from tools import get_data
 
 np.warnings.filterwarnings("ignore")
 
@@ -31,22 +32,26 @@ def load_modules():
     return jss_list
 
 
-def generate_hl_observables():
+def generate_HL(bbx):
     JSS_list = load_modules()
-    h5_file = path.parent / "data" / f"HL.h5"
-    X = np.load(path.parent / "data" / "X.npy")
-    y = np.load(path.parent / "data" / "y.npy")
-    y = pd.DataFrame({"targets":y})
-    HL_df = pd.DataFrame()
+    h5_file = path.parent / "data" / "HL" / f"HL-{bbx}.h5"
+    X, y = get_data(bbx)
+    if h5_file.exists():
+        HL_df = pd.read_hdf(h5_file, "features")
+        y = pd.read_hdf(h5_file, "targets")
+    else:
+        HL_df = pd.DataFrame()
+        y = pd.DataFrame({"targets":y})
     
     # Calculate Jet PT
-    jet_pt = []
-    for x in tqdm(X):
-        pt_val = x[:,0]
-        pt_sum = np.sum(pt_val)
-        jet_pt.append(pt_sum)
-    jet_pt = pd.DataFrame({"pT": np.array(jet_pt)})
-    HL_df = pd.concat([HL_df, jet_pt], axis=1)
+    if "pT" not in HL_df.columns:
+        jet_pt = []
+        for x in tqdm(X):
+            pt_val = x[:,0]
+            pt_sum = np.sum(pt_val)
+            jet_pt.append(pt_sum)
+        jet_pt = pd.DataFrame({"pT": np.array(jet_pt)})
+        HL_df = pd.concat([HL_df, jet_pt], axis=1)
 
     XX = []
     for x in tqdm(X):
@@ -57,18 +62,21 @@ def generate_hl_observables():
         XX.append(x[x[:,0]!=0])
 
     for JSS_calc in JSS_list:
-        print(f"Calculating {JSS_calc}:")
-        try:
-            JSS_out = np.zeros(X.shape[0])
-            exec("JSS_out[:] = %s.calc(XX)[:]" % JSS_calc)
-            JSS_out = pd.DataFrame({JSS_calc: JSS_out})
-            HL_df = pd.concat([HL_df, JSS_out], axis=1)
-            print(HL_df)
-        except Exception as e:
-            print(
-                f"JSS calculation for {JSS_calc} failed with error:"
-            )
-            print(e)
+        if JSS_calc not in HL_df.columns:
+            print(f"Calculating {JSS_calc}:")
+            try:
+                JSS_out = np.zeros(X.shape[0])
+                exec("JSS_out[:] = %s.calc(XX)[:]" % JSS_calc)
+                JSS_out = pd.DataFrame({JSS_calc: JSS_out})
+                HL_df = pd.concat([HL_df, JSS_out], axis=1)
+                print(HL_df)
+            except Exception as e:
+                print(
+                    f"JSS calculation for {JSS_calc} failed with error:"
+                )
+                print(e)
+        else:
+            print(f"{JSS_calc} already calculted. Skipping...")
 
         # Re-organize columns alphabettically.
         # This guarantees the ordering is always the same
@@ -81,4 +89,4 @@ def generate_hl_observables():
 
 
 if __name__ == "__main__":
-    generate_hl_observables()
+    generate_HL(bbx)

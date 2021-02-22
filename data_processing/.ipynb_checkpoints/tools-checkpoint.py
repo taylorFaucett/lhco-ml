@@ -1,4 +1,13 @@
 import numpy as np
+import h5py
+import pathlib
+path = pathlib.Path.cwd()
+
+def get_data(bbx, N=None):
+    hf = h5py.File(path.parent / "data" / "trimmed" / f"{bbx}.h5", "r")
+    X = hf["features"][:N]
+    y = hf["targets"][:N]
+    return X, y
 
 def pad_array(X, dim=4):
     largest = 0

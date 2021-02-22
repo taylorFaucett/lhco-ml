@@ -6,6 +6,7 @@ import glob
 import os
 import sys
 from tqdm import tqdm, trange
+from tools import get_data
 import pathlib
 
 path = pathlib.Path.cwd()
@@ -17,19 +18,18 @@ def efp(data, graph, kappa, beta):
     return X
 
 
-def generate_efp():
+def generate_EFPs(bbx):
     try:
         # Create an h5 file to store EFPs (or re-open to append)
         # if the file already exists
-        hf = h5py.File(path.parent / "data" / "EFP.h5", "a")
+        hf = h5py.File(path.parent / "data" / "EFP" / f"EFP-{bbx}.h5", "a")
         
         # Choose kappa, beta to produce
         kappas = [-1, 0, 1]
         betas = [1, 2]
 
         # Load sample data
-        X = np.load(path.parent / "data" / "X.npy")
-        y = np.load(path.parent / "data" / "y.npy")
+        X, y = get_data(bbx)
 
         # Structure the h5 file. All efps go in the efp group
         if "efp" not in hf.keys():
@@ -79,4 +79,4 @@ def generate_efp():
 
 
 if __name__ == "__main__":
-    generate_efp()
+    generate_EFPs(bbx)
