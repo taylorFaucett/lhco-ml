@@ -1,2 +1,7 @@
 data/
 .ipynb_checkpoints
+results/
+figures/
+generation/gen/MG5
+data_processing/__pycache__/generate_extra_from_rotations.cpython-38.pyc
+figures/EFP

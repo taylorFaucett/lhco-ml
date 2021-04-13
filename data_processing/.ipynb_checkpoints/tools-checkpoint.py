@@ -3,8 +3,11 @@ import h5py
 import pathlib
 path = pathlib.Path.cwd()
 
-def get_data(bbx, N=None):
-    hf = h5py.File(path.parent / "data" / "trimmed" / f"{bbx}.h5", "r")
+def get_data(bbx, N=None, rotated=True):
+    if rotated:
+        hf = h5py.File(path.parent / "data" / "with_rotations" / f"{bbx}.h5", "r")
+    else:
+        hf = h5py.File(path.parent / "data" / "trimmed" / f"{bbx}.h5", "r")
     X = hf["features"][:N]
     y = hf["targets"][:N]
     return X, y

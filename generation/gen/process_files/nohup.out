@@ -1,0 +1,4 @@
+ Usage: DelphesPythia8 config_file pythia_card output_file
+ config_file - configuration file in Tcl format,
+ pythia_card - Pythia8 configuration file,
+ output_file - output file in ROOT format.
