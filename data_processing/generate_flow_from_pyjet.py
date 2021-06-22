@@ -49,7 +49,7 @@ def preprocess(X):
                 # Get the subjets pt, eta, phi constituents
                 subjet_data = subjet.constituents_array()
                 subjet_data = struc2arr(subjet_data)
-                trimmed_jets.append(subjet_data)
+                trimmed_jets.append(subjet_data[:,:3])
         jets_.append(np.vstack(trimmed_jets))
     return jets_
     
@@ -58,4 +58,16 @@ if __name__ == "__main__":
     for bbx in ([1]):
         X, y = get_data(bbx, N)
         X = preprocess(X)
-        generate_jet_images(bbx, N)
+        biggest = 0
+        for x in X:
+            if x.shape[0] > biggest:
+                biggest = x.shape[0]
+        newX = []
+        for x in X:
+            newX.append(np.pad(x, ((0,biggest-x.shape[0]), (0,0))))
+        newX = np.array(newX)
+        hf = h5py.File(path.parent / "data" / "FlowNetwork_from_pyjet" / f"BlackBox{bbx}.h5", "w")
+        hf.create_dataset("features", data=newX)
+        hf.create_dataset("targets", data=y)
+        hf.close()
+        

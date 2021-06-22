@@ -1,15 +1,14 @@
 import numpy as np
 import h5py
 import pathlib
+import pandas as pd
 path = pathlib.Path.cwd()
 
-def get_data(bbx, N=None, rotated=True):
-    if rotated:
-        hf = h5py.File(path.parent / "data" / "with_rotations" / f"{bbx}.h5", "r")
-    else:
-        hf = h5py.File(path.parent / "data" / "trimmed" / f"{bbx}.h5", "r")
-    X = hf["features"][:N]
-    y = hf["targets"][:N]
+def get_data(bbx, N=None):
+    X = pd.read_hdf(path.parent / "data" / "raw" / "combined" / f"BlackBox{bbx}.h5", "features", stop=N)
+    y = np.concatenate(pd.read_hdf(path.parent / "data" / "raw" / "combined" / f"BlackBox{bbx}.h5", "targets", stop=N).to_numpy())
+    X = X.to_numpy()
+    X = np.reshape(X, (len(X), X.shape[1]//3, 3))
     return X, y
 
 def pad_array(X, dim=4):
